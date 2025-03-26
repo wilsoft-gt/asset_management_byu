@@ -1,0 +1,29 @@
+
+### Create user
+post http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+  "userName": "AlejandraAlvarez",
+  "password": "Aleja123.",
+  "name": "AlejandraAlvarez"
+}
+
+### Login user
+# @name login
+post http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "userName": "WilsonOmar",
+  "password": "Omar4291."
+}
+
+### Test authentication
+# @name user
+@access_token = {{login.response.body.token}}
+post http://localhost:3000/auth/check
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
