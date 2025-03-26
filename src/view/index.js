@@ -9,7 +9,7 @@ router.use("/project", project)
 router.use("/users", user)
 router.use("/asset", asset)
 router.get("/", (req, res) => {
-  res.status(200).sent("<h1>Welcome to the site!</h1>")
+  res.status(200).send("<h1>Welcome to the site!</h1>")
 })
 
 module.exports = router

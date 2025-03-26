@@ -3,11 +3,11 @@ const posgres = require("postgres")
 const db = {}
 
 db.sql = posgres({
-  host: "192.168.0.10",
-  port: 3220,
-  database: "assetManagementSystem",
-  username: "postgres",
-  password: "wilsoft"
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DATABASE_NAME,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
 })
 
 db.FindByUsername = async (user, cb) => {
