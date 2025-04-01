@@ -8,5 +8,6 @@ router.post("/", asset.create)
 router.post("/:assetId/assign", asset.assignToUser)
 router.put("/update/:assetId", asset.update)
 router.delete("/delete/:assetId", asset.delete)
+router.post("/release/:assetId")
 
 module.exports = router

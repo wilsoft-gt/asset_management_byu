@@ -27,7 +27,6 @@ user.updateUser = async (req, res) => {
     delete result[0].password
     return res.status(200).json(result)
   } catch (e) {
-    console.log(e)
     if (e && e.routine == "_bt_check_unique") return res.status(500).json({error: "user already exists."})
     return res.status(500).json({error: "could not update the user"})
   }
@@ -53,8 +52,6 @@ user.getUserAssets = async (req, res) => {
 
 user.assignAsset = async (req, res) => {
   try {
-    console.log(req.body.assets, req.params)
-    console.log(`UPDATE asset SET fk_user_id = ${req.params.userId} WHERE id IN (${req.body.assets})`)
     const result = await db.sql`UPDATE asset SET fk_user_id = ${req.params.userId} WHERE id IN ${db.sql(req.body.assets)} RETURNING id, serial, model, brand, size, fk_asset_type_id`
     return res.status(200).json(result)
   } catch(e) {

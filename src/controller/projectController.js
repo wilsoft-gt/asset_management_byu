@@ -25,7 +25,6 @@ project.get = async (req, res) => {
 
 project.create = async (req, res) => {
   try {
-    console.log(req.body)
     const {name, shortname} = req.body
     const exists = await db.projectExists(name)
     if (!exists) {
@@ -37,7 +36,6 @@ project.create = async (req, res) => {
     }
     return res.status(400).json({error: "project already exists"})
   } catch(e) {
-    console.log(e)
     return res.status(500).json({error: "server error"})
   }
 }
@@ -48,7 +46,6 @@ project.update = async (req, res) => {
     const response = await db.sql`UPDATE project SET ${db.sql(req.body)} WHERE id = ${req.params.projectId} returning *`
     return res.status(200).json(response)
   } catch(e) {
-    console.log(e)
     return res.status(500).json({error: e})
   }
 }

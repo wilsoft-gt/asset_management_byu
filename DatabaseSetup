@@ -1,6 +1,6 @@
 
 
-CREATE TYPE public.user_type AS ENUM ('user', 'admin');
+CREATE TYPE public.user_type AS ENUM ('user', 'sup', 'admin');
 
 CREATE TABLE IF NOT EXISTS "asset_type"
 (
