@@ -16,8 +16,10 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 {
-  "name": "Rodrigo Fernandez",
-  "userid": "61552241"
+  "user": {
+    "name": "Rodrigo Fabian",
+    "userid": "61052241"
+  }
 }
 
 ### Get user

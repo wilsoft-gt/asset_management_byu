@@ -23,14 +23,14 @@ auth.register = async (req, res) => {
   
   */
   try {
-    const {userName, password, name, userid} = req.body
+    const {username, password} = req.body.auth
     const hashedPass = await bcript.hash(password, 10)
-    const result = await db.userNameExists(userName)
+    const result = await db.userNameExists(username)
     if (!result) {
-      const user = await db.sql`INSERT INTO public.user (name, userid) values (${name}, ${userid}) returning *`
-      const auth = await db.sql`INSERT INTO public.auth (username, password, fk_user_id) values (${userName}, ${hashedPass}, ${user[0].id}) returning *`
+      const user = await db.sql`INSERT INTO public.user (${db.sql(Object.keys(req.body.user))}) values ${db.sql(Object.values(req.body.user))} returning *`
+      const auth = await db.sql`INSERT INTO public.auth (username, password, fk_user_id) values (${username}, ${hashedPass}, ${user[0].id}) returning *`
       delete auth[0].password
-      return res.status(200).json({...user[0], ...auth[0]})
+      return res.status(200).json([{...user[0], ...auth[0]}])
     } else {
       return res.status(500).json({error: "user already exists"})
     }

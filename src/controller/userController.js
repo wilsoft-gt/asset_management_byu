@@ -5,12 +5,12 @@ const user = {}
 
 user.create = async (req, res) => {
   try {
-    const {name, userid} = req.body
-    const useridExists = await db.useridExists(userid)
+    const useridExists = await db.useridExists(req.body.user.userid)
     if (useridExists) return res.status(400).json({error: "user id already exists"})
-    const user = await db.sql`INSERT INTO public.user (name, userid) values (${name}, ${userid}) returning *`
+    const user = await db.sql`INSERT INTO public.user (${db.sql(Object.keys(req.body.user))}) values ${db.sql(Object.values(req.body.user))} returning *`
     return res.status(200).json(user)
   } catch(e) {
+    console.log(e)
     return res.status(500).json({error: JSON.stringify(e)})
   }
 }

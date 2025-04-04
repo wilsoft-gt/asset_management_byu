@@ -5,10 +5,15 @@ post {{host}}/auth/signup
 Content-Type: application/json
 
 {
-  "userName": "WilsonOmar",
-  "password": "Omar4291.",
-  "name": "Wilson Omar",
-  "userid": "15234123"
+  "user": {
+    "name": "Aleja Alvarez",
+    "userid": "25234123",
+    "usertype": "user"
+  },
+  "auth": {
+    "username": "AlejaAlvarez",
+    "password": "Aleja4291."
+  }
 }
 
 ### Login user
