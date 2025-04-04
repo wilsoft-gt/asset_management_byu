@@ -5,7 +5,7 @@ const user = require("./userView")
 const asset = require("./assetViews")
 
 router.use("/auth", auth)
-router.use("/project", project)
+router.use("/projects", project)
 router.use("/users", user)
 router.use("/assets", asset)
 router.get("/", (req, res) => {
