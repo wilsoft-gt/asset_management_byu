@@ -29,10 +29,11 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 {
-  "serial": "CN-0DY523-23523-42H-80US", 
+  "serial": "CN-0DY523-18234-42H-80US", 
   "model": "P2422H",
   "brand": "DELL",
-  "size": 24
+  "size": 24,
+  "type": "monitor"
 }
 
 

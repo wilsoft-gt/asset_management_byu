@@ -54,6 +54,7 @@ auth.login = async (req, res) => {
     let token = jwt.sign({...savedUser[0], ...userInfo[0]}, "thisisthesecretstringthatwillbepased", {expiresIn: "1h"})
     return res.status(200).json({token});
   } catch(e) {
+    console.log(e)
     return res.status(500).json({error: "Cannot authenticate"})
   }
 }

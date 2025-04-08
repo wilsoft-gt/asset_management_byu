@@ -1,0 +1,45 @@
+###@host = https://asset-management-byu.onrender.com
+@host = http://localhost:3000
+
+### Login user
+# @name login
+post {{host}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "WilsonOmar",
+  "password": "Omar4291."
+}
+
+
+### Get announcements
+@access_token = {{login.response.body.token}}
+get {{host}}/announcements
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
+### Create announcements
+@access_token = {{login.response.body.token}}
+post {{host}}/announcements
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+{
+  "title": "This is the title 1",
+  "content": "This is the body content of the announcement 7."
+}
+
+
+### Togle announcement active
+@access_token = {{login.response.body.token}}
+put {{host}}/announcements/10
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
+
+
+### Togle announcement active
+@access_token = {{login.response.body.token}}
+delete {{host}}/announcements/10
+Content-Type: application/json
+Authorization: Bearer {{access_token}}
