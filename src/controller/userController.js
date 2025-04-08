@@ -22,6 +22,7 @@ user.getAll = async (req, res) => {
       return res.status(200).json(users)
     } else {
       const users = await db.sql`SELECT * FROM public.user`
+      return res.status(200).json(users)
     }
   } catch(e) {
     return res.status(500).json({error: JSON.stringify(e)})
