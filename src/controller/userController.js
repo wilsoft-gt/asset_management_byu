@@ -17,10 +17,14 @@ user.create = async (req, res) => {
 
 user.getAll = async (req, res) => {
   try {
-    const users = await db.sql`SELECT * FROM public.user`
-    res.status(200).json(users)
+    if (req.user.usertype != "admin") {
+      const users = await db.sql`SELECT * FROM public.user WHERE usertype <> 'admin'`
+      return res.status(200).json(users)
+    } else {
+      const users = await db.sql`SELECT * FROM public.user`
+    }
   } catch(e) {
-    res.status(500).json({error: JSON.stringify(e)})
+    return res.status(500).json({error: JSON.stringify(e)})
   }
 }
 
@@ -50,6 +54,7 @@ user.deleteUser = async (req, res) => {
     const result = await db.sql`DELETE FROM public.user WHERE id = ${req.params.userId}`
     return res.status(204).json(result[0])
   } catch(e) {
+    console.log(e)
     return res.status(500).json({error: e})
   }
 }

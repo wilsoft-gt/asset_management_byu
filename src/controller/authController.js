@@ -41,6 +41,7 @@ auth.register = async (req, res) => {
   }
 }
 
+
 auth.login = async (req, res) => {
   try {
     const {username, password} = req.body

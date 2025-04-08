@@ -6,13 +6,13 @@ Content-Type: application/json
 
 {
   "user": {
-    "name": "Aleja Alvarez",
-    "userid": "25234123",
-    "usertype": "user"
+    "name": "Administrator",
+    "userid": "0000001",
+    "usertype": "admin"
   },
   "auth": {
-    "username": "AlejaAlvarez",
-    "password": "Aleja4291."
+    "username": "administrator",
+    "password": "Administrator1234$"
   }
 }
 

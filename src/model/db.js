@@ -1,14 +1,10 @@
 const posgres = require("postgres")
 
+const { DB_URL } = process.env
+
 const db = {}
 
-db.sql = posgres({
-  host: process.env.DB_HOST,
-  port: process.env.DB_PORT,
-  database: process.env.DATABASE_NAME,
-  username: process.env.DATABASE_USERNAME,
-  password: process.env.DATABASE_PASSWORD,
-})
+db.sql = posgres(`${DB_URL}`)
 
 db.FindByUsername = async (user, cb) => {
   try {

@@ -11,7 +11,7 @@ router.get("/:userId/assets", passport.authenticate("jwt", {session: false}), us
 router.post("/:userId/assets/release", passport.authenticate("jwt", {session: false}), user.releaseAssets)
 router.post("/:userId/assets/assign", passport.authenticate("jwt", {session: false}), user.assignAsset)
 router.put("/:userId",passport.authenticate("jwt", {session: false}), user.updateUser)
-router.delete("/:userId",passport.authenticate("jwt", {session: false}), util.isAdmin, user.deleteUser)
+router.delete("/:userId",passport.authenticate("jwt", {session: false}), user.deleteUser)
 
 
 

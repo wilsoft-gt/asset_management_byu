@@ -1,12 +1,12 @@
-@host = http://localhost:3000
+@host = https://asset-management-byu.onrender.com
 ### Login user
 # @name login
 post {{host}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "WilsonOmar",
-  "password": "Omar4291."
+  "username": "supervisor",
+  "password": "Supervisor1234$"
 }
 
 

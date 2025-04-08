@@ -6,8 +6,8 @@ post {{host}}/auth/login
 Content-Type: application/json
 
 {
-  "username": "WilsonOmar",
-  "password": "Omar4291."
+  "username": "administrator",
+  "password": "Administrator1234$"
 }
 
 
@@ -29,7 +29,7 @@ POST {{host}}/projects
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
-{"name":"United States Postal Service","shortname":"USPS"}
+{"name":"Independece Blue Cross","shortname":"IBX"}
 
 
 ###{"id":4,"name":"Entertainment Benefits Group","shortname":"EBG"},{"id":2,"name":"FedEx","shortname":"fdx"},{"id":7,"name":"Not assigned","shortname":"N/A"}
