@@ -29,9 +29,10 @@ Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 {
-  "serial": "ASET21D4SD-9346", 
-  "model": "Optiplex 3080",
-  "brand": "DELL"
+  "serial": "CN-0DY523-23523-42H-80US", 
+  "model": "P2422H",
+  "brand": "DELL",
+  "size": 24
 }
 
 

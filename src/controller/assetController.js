@@ -34,10 +34,8 @@ asset.getBySerial = async (req, res) => {
 
 
 asset.create = async (req, res) => {
-  try {
-    const {serial, model, brand} = req.body
-    
-    const result = await db.sql`INSERT INTO public.asset (serial, model, brand) values (${serial}, ${model}, ${brand}) returning *`
+  try {    
+    const result = await db.sql`INSERT INTO public.asset (${db.sql(Object.keys(req.body))}) values ${db.sql(Object.keys(req.body))} returning *`
     return res.status(201).json(result)
   } catch(e) {
     console.log(e)
