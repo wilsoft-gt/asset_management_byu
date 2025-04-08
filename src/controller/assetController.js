@@ -68,7 +68,7 @@ asset.delete = async (req, res) => {
 asset.assignToUser = async (req, res) => {
   try {
     const result = await db.sql`UPDATE public.asset SET fk_user_id = ${req.body.userId} WHERE id = ${req.params.assetId} returning *`
-    return res.status(204).json(result)
+    return res.status(200).json(result)
   } catch(e) {
     return res.status(500).json({error: e})
   }
