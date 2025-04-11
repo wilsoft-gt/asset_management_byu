@@ -31,6 +31,11 @@ funcUtils.renderHome = () => {
         padding: 4em;
         box-shadow: 2px 5px 5px #ccc;
       }
+
+      .developer {
+        font-size: 0.75em;
+        color: #777;
+      }
     </style>
   </head>
   <body>
@@ -38,6 +43,15 @@ funcUtils.renderHome = () => {
       <section>
         <h1>This site is just a template</h1>
         <p>To view the actual website visit <a href="https://wilsoft-gt.github.io/asset-management-front-byu/">Asset Management System</a></p>
+        <p class="developer">
+          <span>
+            Developed by Wilson Romero
+          </span>  
+          <br />
+          <span>
+            BYU-I CSE-497 Senior Project
+          </span>
+        </p>
       </section>
     </main>
   </body>
