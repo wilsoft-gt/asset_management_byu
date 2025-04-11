@@ -84,6 +84,27 @@ asset.release = async (req, res) =>{
   }
 }
 
+asset.getStats = async (req, res) => {
+  try {
+    const result = await db.sql`
+    SELECT 
+      type,
+      COUNT(*) AS total_assets,
+      COUNT(CASE WHEN disposed = 1 THEN 1 END) AS disposed_assets,
+      COUNT(CASE WHEN disposed = 0 THEN 1 END) AS non_disposed_assets,
+      COUNT(CASE WHEN fk_user_id IS NOT NULL THEN 1 END) AS assigned_to_user,
+      COUNT(CASE WHEN fk_user_id IS NULL THEN 1 END) AS not_assigned_to_user
+    FROM 
+      public.asset
+    GROUP BY 
+      type;
+    `
+    return res.status(200).json(result)
+  } catch(e) {
+    console.log(e)
+    return res.status(500).json({error: e})
+  }
+}
 
 
 module.exports = asset
