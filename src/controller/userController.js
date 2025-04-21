@@ -34,6 +34,51 @@ user.get = async (req, res) => {
     const user = await db.sql`SELECT * FROM public.user WHERE id = ${req.params.userId}`
     res.status(200).json(user)
   } catch(e) {
+    console.log(e)
+    res.status(500).json({error: "There was an error retrieving the user"})
+  }
+}
+
+user.getDetails = async (req, res) => {
+  try {
+    const user = await db.sql`
+    SELECT
+      pu.id,
+      pu.userid,
+      pu.name,
+      pu.enabled, 
+      pu.usertype,
+      CASE 
+        WHEN pu.fk_project_id IS NOT NULL THEN
+          json_build_object(
+            'id', pp.id,
+            'name', pp.name
+          )
+        ELSE 
+          NULL
+        END as project,
+      CASE
+        WHEN pa.fk_user_id IS NOT NULL THEN
+          json_agg(
+            jsonb_build_object(
+              'serial',pa.serial,
+              'model', pa.model,
+              'brand', pa.brand,
+              'size', pa.size,
+              'type', pa.type
+            )
+          )
+        ELSE
+          NULL
+        END AS assets
+    FROM public.user pu
+    LEFT JOIN public.asset pa on pa.fk_user_id = pu.id
+    LEFT JOIN public.project pp ON pu.fk_project_id = pp.id
+    WHERE pu.id = ${req.params.userId}
+    GROUP BY pu.id, pp.id, pa.fk_user_id;`
+    res.status(200).json(user)
+  } catch(e) {
+    console.log(e)
     res.status(500).json({error: "There was an error retrieving the user"})
   }
 }

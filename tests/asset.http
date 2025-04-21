@@ -1,4 +1,6 @@
-@host = http://localhost:3000
+@host = https://asset-management-byu.onrender.com
+#@host = http://localhost:3000
+
 # @name login
 post {{host}}/auth/login
 Content-Type: application/json
@@ -17,7 +19,13 @@ Authorization: Bearer {{access_token}}
 
 ### Get single asset
 @access_token = {{login.response.body.token}}
-GET {{host}}/assets/3
+GET {{host}}/assets/10
+Authorization: Bearer {{access_token}}
+
+
+### Get single asset with related data
+@access_token = {{login.response.body.token}}
+GET {{host}}/assets/10/details
 Authorization: Bearer {{access_token}}
 
 

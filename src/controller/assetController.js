@@ -22,6 +22,38 @@ asset.get = async (req, res) => {
   }
 }
 
+asset.getDetails = async (req, res) => {
+  try {
+    const result = await db.sql`
+      SELECT
+        pa.id,
+        pa.serial,
+        pa.model,
+        pa.brand,
+        pa.size,
+        pa.disposed,
+        pa.disposed_date,
+        pa.disposed_reason,
+        pa.type,
+        CASE
+          WHEN pa.fk_user_id IS NOT NULL THEN
+            jsonb_build_object(
+            'id',pu.id,
+            'userid', pu.userid,
+            'name', pu.name
+            )
+          ELSE 
+            NULL
+        END AS assigned_to 
+      FROM public.asset pa
+      LEFT JOIN public.user pu on pa.fk_user_id = pu.id
+      WHERE pa.id = ${req.params.assetId};
+    `
+    return res.status(200).json(result)
+  } catch(e) {
+    return res.status(500).json({error: e})
+  }
+}
 
 asset.getBySerial = async (req, res) => {
   try {

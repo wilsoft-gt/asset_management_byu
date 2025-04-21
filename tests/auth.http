@@ -1,4 +1,5 @@
-@host = http://localhost:3000
+@host = https://asset-management-byu.onrender.com
+#@host = http://localhost:3000
 
 ### Create user
 post {{host}}/auth/signup
@@ -22,8 +23,8 @@ post {{host}}/auth/login
 Content-Type: application/json
 
 {
-  "userName": "WilsonOmar",
-  "password": "Omar4291."
+    "username": "administrator",
+    "password": "Administrator1234$"
 }
 
 ### Test authentication
