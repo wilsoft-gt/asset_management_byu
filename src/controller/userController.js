@@ -61,6 +61,7 @@ user.getDetails = async (req, res) => {
         WHEN pa.fk_user_id IS NOT NULL THEN
           json_agg(
             jsonb_build_object(
+              'id', pa.id,
               'serial',pa.serial,
               'model', pa.model,
               'brand', pa.brand,

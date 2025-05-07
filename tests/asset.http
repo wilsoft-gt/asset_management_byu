@@ -55,7 +55,7 @@ Authorization: Bearer {{access_token}}
 }
 
 
-### Update user
+### Update asset
 @access_token = {{login.response.body.token}}
 PUT {{host}}/assets/3
 Content-Type: application/json
@@ -66,13 +66,13 @@ Authorization: Bearer {{access_token}}
 }
 
 
-### Delete user
+### Delete asset
 DELETE {{host}}/assets/8
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
 
 
-### Release user
+### Release asset
 POST {{host}}/assets/3/release
 Content-Type: application/json
 Authorization: Bearer {{access_token}}
